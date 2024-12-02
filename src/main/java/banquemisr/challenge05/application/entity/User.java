@@ -1,6 +1,7 @@
 package banquemisr.challenge05.application.entity;
 
 
+import banquemisr.challenge05.application.enums.Roles;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -42,7 +43,8 @@ public class User implements UserDetails {
     private String password;
 
     @Column(nullable = false)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Roles roles = Roles.USER;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
