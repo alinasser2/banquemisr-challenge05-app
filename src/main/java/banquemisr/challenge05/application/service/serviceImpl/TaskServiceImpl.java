@@ -1,6 +1,6 @@
 package banquemisr.challenge05.application.service;
 
-import banquemisr.challenge05.application.dto.TaskRequestDTO;
+import banquemisr.challenge05.application.dto.TaskDTO;
 import banquemisr.challenge05.application.dto.TaskResponseDTO;
 import banquemisr.challenge05.application.entity.Task;
 import banquemisr.challenge05.application.mapper.TaskMapper;
@@ -20,7 +20,7 @@ public class TaskService {
     private final TaskRepository taskRepository;
     private final TaskMapper taskMapper;
 
-    public TaskResponseDTO createTask(TaskRequestDTO taskRequestDTO) {
+    public TaskResponseDTO createTask(TaskDTO taskRequestDTO) {
         Task task = taskMapper.toEntity(taskRequestDTO);
         Task savedTask = taskRepository.save(task);
         return taskMapper.toDto(savedTask);
@@ -39,7 +39,7 @@ public class TaskService {
                 .collect(Collectors.toList());
     }
 
-    public TaskResponseDTO updateTask(UUID id, TaskRequestDTO taskRequestDTO) {
+    public TaskResponseDTO updateTask(UUID id, TaskDTO taskRequestDTO) {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Task not found with ID: " + id));
 

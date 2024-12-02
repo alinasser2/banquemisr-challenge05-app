@@ -1,6 +1,6 @@
 package banquemisr.challenge05.application.controller;
 
-import banquemisr.challenge05.application.dto.TaskRequestDTO;
+import banquemisr.challenge05.application.dto.TaskDTO;
 import banquemisr.challenge05.application.response.TaskResponseDTO;
 import banquemisr.challenge05.application.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +23,13 @@ public class TaskController {
 
     @PostMapping
     @ApiOperation(value = "Create a new task")
-    public ResponseEntity<TaskResponseDTO> createTask(@RequestBody TaskRequestDTO taskRequest) {
+    public ResponseEntity<TaskResponseDTO> createTask(@RequestBody TaskDTO taskRequest) {
         return ResponseEntity.ok(taskService.createTask(taskRequest));
     }
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Update an existing task")
-    public ResponseEntity<TaskResponseDTO> updateTask(@PathVariable UUID id, @RequestBody TaskRequestDTO taskRequest) {
+    public ResponseEntity<TaskResponseDTO> updateTask(@PathVariable UUID id, @RequestBody TaskDTO taskRequest) {
         return ResponseEntity.ok(taskService.updateTask(id, taskRequest));
     }
 
