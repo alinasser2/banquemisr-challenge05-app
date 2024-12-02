@@ -1,4 +1,4 @@
-package banquemisr.challenge05.application.controller;
+package banquemisr.challenge05.application.web.controller;
 
 import banquemisr.challenge05.application.dto.LoginDto;
 import banquemisr.challenge05.application.dto.RegisterDto;

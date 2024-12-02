@@ -39,11 +39,6 @@ public class Task {
     private LocalDateTime createdAt;
 
     private LocalDateTime deletedAt;
-
-    @ManyToOne
-    @JoinColumn(name = "created_by", nullable = false)
-    private User createdBy;
-
     // Enum for task status
     public enum Status {
         TODO,

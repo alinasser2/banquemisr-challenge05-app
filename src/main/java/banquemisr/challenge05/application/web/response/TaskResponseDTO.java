@@ -1,4 +1,4 @@
-package banquemisr.challenge05.application.response;
+package banquemisr.challenge05.application.web.response;
 
 import lombok.Data;
 import java.time.LocalDateTime;
