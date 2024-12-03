@@ -1,4 +1,4 @@
-package banquemisr.challenge05.application.config;
+package banquemisr.challenge05.application.security;
 
 
 import io.jsonwebtoken.Claims;

@@ -22,6 +22,12 @@ public interface TaskMapper {
     @Mapping(target = "priority", source = "priority")  // Map 'priority' from TaskDTO to Task
     @Mapping(target = "dueDate", source = "dueDate")  // Map 'dueDate' from TaskDTO to Task
     Task toEntity(TaskDTO dto);
+
+
+    @Mapping(target = "status", source = "status")  // Ensure 'status' is properly mapped
+    @Mapping(target = "priority", source = "priority")  // Map 'priority' from Task to TaskResponseDTO
+    @Mapping(target = "dueDate", source = "dueDate")  // Map 'dueDate' from Task to TaskResponseDTO
+    @Mapping(target = "createdAt", source = "createdAt")  // Map 'createdAt' from Task to TaskResponseDTO
     TaskResponseDTO toDto(Task task);
 
     // Update an existing Task entity with new values from TaskDTO

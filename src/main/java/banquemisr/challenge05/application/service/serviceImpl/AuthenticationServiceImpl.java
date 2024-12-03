@@ -1,6 +1,6 @@
 package banquemisr.challenge05.application.service.serviceImpl;
 
-import banquemisr.challenge05.application.config.JwtService;
+import banquemisr.challenge05.application.security.JwtService;
 import banquemisr.challenge05.application.dto.LoginDto;
 import banquemisr.challenge05.application.dto.RegisterDto;
 import banquemisr.challenge05.application.entity.User;

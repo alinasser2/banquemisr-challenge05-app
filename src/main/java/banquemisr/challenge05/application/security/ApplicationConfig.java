@@ -1,4 +1,4 @@
-package banquemisr.challenge05.application.config;
+package banquemisr.challenge05.application.security;
 
 import banquemisr.challenge05.application.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
