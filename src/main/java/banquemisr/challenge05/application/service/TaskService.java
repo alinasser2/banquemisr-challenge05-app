@@ -2,6 +2,7 @@ package banquemisr.challenge05.application.service;
 
 import banquemisr.challenge05.application.dto.TaskDTO;
 import banquemisr.challenge05.application.entity.Task;
+import banquemisr.challenge05.application.enums.TaskStatus;
 import banquemisr.challenge05.application.web.response.TaskResponseDTO;
 
 import java.time.LocalDateTime;
@@ -14,5 +15,9 @@ public interface TaskService {
     TaskResponseDTO getTaskById(UUID id);
     List<TaskResponseDTO> getAllTasks();
     void deleteTask(UUID id);
-    List<TaskResponseDTO> searchTasks(String title, String description, Task.Status status, LocalDateTime dueDate, Integer page, Integer size);
+    List<TaskResponseDTO> searchTasks(String title, String description, TaskStatus status, LocalDateTime dueDate, Integer page, Integer size);
+
+    TaskResponseDTO markTaskDone(UUID id);
+
+    TaskResponseDTO markTaskInProgress(UUID id);
 }

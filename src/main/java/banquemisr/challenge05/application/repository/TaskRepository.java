@@ -1,6 +1,7 @@
 package banquemisr.challenge05.application.repository;
 
 import banquemisr.challenge05.application.entity.Task;
+import banquemisr.challenge05.application.enums.TaskStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,8 +22,10 @@ public interface TaskRepository extends JpaRepository<Task, UUID> {
     Page<Task> searchTasks(
             @Param("title") String title,
             @Param("description") String description,
-            @Param("status") Task.Status status,
+            @Param("status") TaskStatus status,
             @Param("dueDate") LocalDateTime dueDate,
             Pageable pageable);
+
+    boolean existsByIdAndUserId(UUID id, UUID userId);
 
 }

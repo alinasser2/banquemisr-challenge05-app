@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-12-03T00:56:45+0200",
+    date = "2024-12-03T18:38:27+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Amazon.com Inc.)"
 )
 @Component
@@ -40,6 +40,16 @@ public class TaskMapperImpl implements TaskMapper {
         }
 
         TaskResponseDTO taskResponseDTO = new TaskResponseDTO();
+
+        if ( task.getStatus() != null ) {
+            taskResponseDTO.setStatus( task.getStatus().name() );
+        }
+        taskResponseDTO.setPriority( task.getPriority() );
+        taskResponseDTO.setDueDate( task.getDueDate() );
+        taskResponseDTO.setCreatedAt( task.getCreatedAt() );
+        taskResponseDTO.setId( task.getId() );
+        taskResponseDTO.setTitle( task.getTitle() );
+        taskResponseDTO.setDescription( task.getDescription() );
 
         return taskResponseDTO;
     }

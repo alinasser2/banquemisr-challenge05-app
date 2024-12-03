@@ -25,7 +25,6 @@ import java.util.UUID;
 @Table
 public class User implements UserDetails {
 
-
     @Id
     @GeneratedValue
     private UUID id;
@@ -50,6 +49,9 @@ public class User implements UserDetails {
     private LocalDateTime createdAt;
 
     private LocalDateTime deletedAt;
+
+    @OneToMany(mappedBy = "user")
+    private List<Task> tasks;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

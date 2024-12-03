@@ -1,5 +1,7 @@
 package banquemisr.challenge05.application.entity;
 
+import banquemisr.challenge05.application.enums.TaskPriority;
+import banquemisr.challenge05.application.enums.TaskStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -28,21 +30,19 @@ public class Task {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Status status = Status.TODO;
+    private TaskStatus status = TaskStatus.TODO;
 
     @Column(nullable = false)
-    private Integer priority;  // 1 = High, 2 = Medium, 3 = Low
+    private TaskPriority priority = TaskPriority.LOW;
 
     private LocalDateTime dueDate;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
 
     private LocalDateTime deletedAt;
-    // Enum for task status
-    public enum Status {
-        TODO,
-        IN_PROGRESS,
-        DONE
-    }
 }

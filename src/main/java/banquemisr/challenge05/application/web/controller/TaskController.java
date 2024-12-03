@@ -2,6 +2,7 @@ package banquemisr.challenge05.application.web.controller;
 
 import banquemisr.challenge05.application.dto.TaskDTO;
 import banquemisr.challenge05.application.entity.Task;
+import banquemisr.challenge05.application.enums.TaskStatus;
 import banquemisr.challenge05.application.web.response.TaskResponseDTO;
 import banquemisr.challenge05.application.service.TaskService;
 import io.swagger.annotations.*;
@@ -107,12 +108,28 @@ public class TaskController {
     public ResponseEntity<List<TaskResponseDTO>> searchTasks(
             @RequestParam(required = false) @ApiParam(value = "Task title to search") String title,
             @RequestParam(required = false) @ApiParam(value = "Task description to search") String description,
-            @RequestParam(required = false) @ApiParam(value = "Task status (TODO, IN_PROGRESS, DONE)") Task.Status status,
+            @RequestParam(required = false) @ApiParam(value = "Task status (TODO, IN_PROGRESS, DONE)") TaskStatus status,
             @RequestParam(required = false) @ApiParam(value = "Task due date in ISO format") LocalDateTime dueDate,
             @RequestParam(required = false) @ApiParam(value = "Page number (default 0)") Integer page,
             @RequestParam(required = false) @ApiParam(value = "Page size (default 10)") Integer size) {
 
         List<TaskResponseDTO> tasks = taskService.searchTasks(title, description, status, dueDate, page, size);
         return ResponseEntity.ok(tasks);
+    }
+
+
+    @PatchMapping("/{id}/done")
+    @ApiOperation(
+            value = "Mark a task as done",
+            notes = "Provide the task ID to mark it as done."
+    )
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Task marked as done successfully", response = TaskResponseDTO.class),
+            @ApiResponse(code = 404, message = "Task not found with the given ID")
+    })
+    public ResponseEntity<TaskResponseDTO> markTaskDone(
+            @ApiParam(value = "UUID of the task to be marked as done", required = true)
+            @PathVariable UUID id) {
+        return ResponseEntity.ok(taskService.markTaskDone(id));
     }
 }

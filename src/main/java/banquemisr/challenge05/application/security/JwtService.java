@@ -8,7 +8,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
+import org.springframework.beans.factory.annotation.Value;
 import java.security.Key;
 import java.util.Date;
 import java.util.Map;
@@ -17,7 +17,10 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private static final String secretKey = "34213c6c3a44c2ebb046e3ce957a061aca7bcc2466e48bd2b535cf5fa7f5cb58";
+//    private static final String secretKey = "34213c6c3a44c2ebb046e3ce957a061aca7bcc2466e48bd2b535cf5fa7f5cb58";
+
+    @Value("${jwt.secretKey}")
+    private String secretKey;
 
 
     public String extractUserEmail(String token) {
