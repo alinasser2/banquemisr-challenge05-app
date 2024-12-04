@@ -1,5 +1,6 @@
 package banquemisr.challenge05.application.web.response;
 
+import banquemisr.challenge05.application.enums.TaskPriority;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -10,7 +11,7 @@ public class TaskResponseDTO {
     private String title;
     private String description;
     private String status;
-    private Integer priority;
+    private TaskPriority priority;
     private LocalDateTime dueDate;
     private LocalDateTime createdAt;
 }

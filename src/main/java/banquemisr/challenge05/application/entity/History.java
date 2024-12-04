@@ -26,5 +26,5 @@ public class History {
     private Task task;
 
     @Column(nullable = false)
-    private Date CreatedAt;
+    private Date createdAt;
 }

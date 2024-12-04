@@ -2,7 +2,6 @@ package banquemisr.challenge05.application.mapper;
 
 import banquemisr.challenge05.application.dto.TaskDTO;
 import banquemisr.challenge05.application.entity.Task;
-import banquemisr.challenge05.application.enums.TaskPriority;
 import banquemisr.challenge05.application.enums.TaskStatus;
 import banquemisr.challenge05.application.web.response.TaskResponseDTO;
 import javax.annotation.processing.Generated;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-12-03T23:16:08+0200",
+    date = "2024-12-04T21:52:27+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Amazon.com Inc.)"
 )
 @Component
@@ -27,9 +26,7 @@ public class TaskMapperImpl implements TaskMapper {
         if ( dto.getStatus() != null ) {
             task.setStatus( Enum.valueOf( TaskStatus.class, dto.getStatus() ) );
         }
-        if ( dto.getPriority() != null ) {
-            task.setPriority( TaskPriority.values()[ dto.getPriority() ] );
-        }
+        task.setPriority( dto.getPriority() );
         task.setDueDate( dto.getDueDate() );
         task.setTitle( dto.getTitle() );
         task.setDescription( dto.getDescription() );
@@ -48,9 +45,7 @@ public class TaskMapperImpl implements TaskMapper {
         if ( task.getStatus() != null ) {
             taskResponseDTO.setStatus( task.getStatus().name() );
         }
-        if ( task.getPriority() != null ) {
-            taskResponseDTO.setPriority( task.getPriority().ordinal() );
-        }
+        taskResponseDTO.setPriority( task.getPriority() );
         taskResponseDTO.setDueDate( task.getDueDate() );
         taskResponseDTO.setCreatedAt( task.getCreatedAt() );
         taskResponseDTO.setId( task.getId() );
@@ -76,7 +71,7 @@ public class TaskMapperImpl implements TaskMapper {
             entity.setStatus( Enum.valueOf( TaskStatus.class, dto.getStatus() ) );
         }
         if ( dto.getPriority() != null ) {
-            entity.setPriority( TaskPriority.values()[ dto.getPriority() ] );
+            entity.setPriority( dto.getPriority() );
         }
         if ( dto.getDueDate() != null ) {
             entity.setDueDate( dto.getDueDate() );

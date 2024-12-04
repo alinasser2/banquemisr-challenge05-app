@@ -12,13 +12,15 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 )
 public interface HistoryMapper {
 
+    // Map History entity to HistoryDto
     @Mapping(source = "actionType", target = "actionType")
     @Mapping(source = "task", target = "task")
-    @Mapping(source = "createdAt", target = "CreatedAt")
+    @Mapping(source = "createdAt", target = "createdAt")
     HistoryDto toDto(History history);
 
+    // Map HistoryDto back to History entity
     @Mapping(source = "actionType", target = "actionType")
-    @Mapping(source = "task", target = "task")
-    @Mapping(source = "createdAt", target = "CreatedAt")
+    @Mapping(source = "task", target = "task")  // Map TaskDto to Task
+    @Mapping(source = "createdAt", target = "createdAt")
     History toEntity(HistoryDto historyDto);
 }

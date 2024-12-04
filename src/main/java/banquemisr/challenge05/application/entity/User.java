@@ -54,8 +54,9 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return List.of(() -> "ROLE_" + roles.name());
     }
+
 
     @Override
     public String getUsername() {
@@ -86,4 +87,8 @@ public class User implements UserDetails {
     public String getPassword() {
         return password;
     }
+
+
+
+
 }

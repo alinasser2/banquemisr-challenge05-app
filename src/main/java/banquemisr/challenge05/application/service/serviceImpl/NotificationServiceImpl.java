@@ -33,7 +33,7 @@ public class NotificationServiceImpl implements NotificationService {
         message.setTo(to);
         message.setSubject(subject);
         message.setText(body);
-        message.setFrom("bar@gmail.com");
+        message.setFrom("an4077368@gmail.com");
         mailSender.send(message);
         String currentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByEmail(currentUserEmail)

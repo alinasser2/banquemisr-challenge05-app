@@ -7,7 +7,9 @@ import lombok.Getter;
 public enum ErrorMessage {
     RESOURCE_NOT_FOUND("Resource not found"),
     INVALID_REQUEST("Invalid request"),
-    INTERNAL_SERVER_ERROR("Internal server error");
+    INTERNAL_SERVER_ERROR("Internal server error"),
+    EMAIL_ALREADY_EXISTS("Email already exists");
+
 
     private final String message;
 }

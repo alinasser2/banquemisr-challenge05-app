@@ -16,11 +16,13 @@ import banquemisr.challenge05.application.mapper.TaskMapper;
 import banquemisr.challenge05.application.repository.TaskRepository;
 import banquemisr.challenge05.application.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import banquemisr.challenge05.application.utils.PaginationUtils;
 import org.springframework.data.domain.Page;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -42,7 +44,9 @@ public class TaskServiceImpl implements TaskService {
 
     public TaskResponseDTO createTask(TaskDTO taskRequestDTO) {
         Task task = taskMapper.toEntity(taskRequestDTO);
-        System.out.println(task);
+        User user = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName())
+                .orElseThrow(() -> new ResourceNotFoundException(ErrorMessage.RESOURCE_NOT_FOUND));
+        task.setUser(user);
         Task savedTask = taskRepository.save(task);
         return taskMapper.toDto(savedTask);
     }
@@ -66,7 +70,9 @@ public class TaskServiceImpl implements TaskService {
     }
 
     public TaskResponseDTO updateTask(UUID id, TaskDTO taskRequestDTO) {
-        Task task = taskRepository.findById(id)
+        User user = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName())
+                .orElseThrow(() -> new ResourceNotFoundException(ErrorMessage.RESOURCE_NOT_FOUND));
+        Task task = taskRepository.findByIdAndUserId(id, user.getId())
                 .orElseThrow(() -> new RuntimeException("Task not found with ID: " + id));
 
         taskMapper.updateTaskFromDto(taskRequestDTO, task);
@@ -84,7 +90,10 @@ public class TaskServiceImpl implements TaskService {
 
     public List<TaskResponseDTO> searchTasks(String title, String description, TaskStatus status,
                                              LocalDateTime dueDate, Integer page, Integer size) {
-        Page<Task> taskPage = taskRepository.searchTasks(title, description, status, dueDate,
+        User user = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName())
+                .orElseThrow(() -> new ResourceNotFoundException(ErrorMessage.RESOURCE_NOT_FOUND));
+
+        Page<Task> taskPage = taskRepository.searchTasks(user.getId(), title, description, status, dueDate,
                 PaginationUtils.createPageable(page, size));
         return taskPage.getContent().stream()
                 .map(taskMapper::toDto)
@@ -98,13 +107,13 @@ public class TaskServiceImpl implements TaskService {
                 .orElseThrow(() -> new ResourceNotFoundException(ErrorMessage.RESOURCE_NOT_FOUND));
         task.setStatus(TaskStatus.DONE);
         Task updatedTask = taskRepository.save(task);
-        History history = History.builder().actionType(ActionType.STATUS_CHANGED).task(updatedTask).CreatedAt(new Date()).build();
+        History history = History.builder().actionType(ActionType.STATUS_CHANGED).task(updatedTask).createdAt(new Date()).build();
         historyRepo.save(history);
         User user = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName())
                 .orElseThrow(() -> new ResourceNotFoundException(ErrorMessage.RESOURCE_NOT_FOUND));
         String subject = "Task DONE: " + task.getTitle();
         String body = "Task " + task.getTitle() + " is now DONE!";
-        emailService.sendEmail(user.getEmail(), subject, body);
+//        emailService.sendEmail(user.getEmail(), subject, body);
         return taskMapper.toDto(updatedTask);
     }
 
@@ -113,13 +122,13 @@ public class TaskServiceImpl implements TaskService {
                 .orElseThrow(() -> new ResourceNotFoundException(ErrorMessage.RESOURCE_NOT_FOUND));
         task.setStatus(TaskStatus.IN_PROGRESS);
         Task updatedTask = taskRepository.save(task);
-        History history = History.builder().actionType(ActionType.STATUS_CHANGED).task(updatedTask).CreatedAt(new Date()).build();
+        History history = History.builder().actionType(ActionType.STATUS_CHANGED).task(updatedTask).createdAt(new Date()).build();
         historyRepo.save(history);
         User user = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName())
                 .orElseThrow(() -> new ResourceNotFoundException(ErrorMessage.RESOURCE_NOT_FOUND));
         String subject = "Task IN_PROGRESS: " + task.getTitle();
         String body = "Task " + task.getTitle() + " is now IN_PROGRESS!";
-        emailService.sendEmail(user.getEmail(), subject, body);
+//        emailService.sendEmail(user.getEmail(), subject, body);
         return taskMapper.toDto(updatedTask);
     }
 }

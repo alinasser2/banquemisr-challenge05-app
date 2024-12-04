@@ -1,5 +1,7 @@
 package banquemisr.challenge05.application.service.serviceImpl;
 
+import banquemisr.challenge05.application.enums.ErrorMessage;
+import banquemisr.challenge05.application.exception.DuplicateEnryException;
 import banquemisr.challenge05.application.security.JwtService;
 import banquemisr.challenge05.application.dto.LoginDto;
 import banquemisr.challenge05.application.dto.RegisterDto;
@@ -41,6 +43,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public String register(RegisterDto registerDto) {
+        if (userRepository.existsByEmail(registerDto.getEmail())) {
+            throw new DuplicateEnryException(ErrorMessage.EMAIL_ALREADY_EXISTS);
+        }
         User user = User.builder()
                 .firstName(registerDto.getFirstName())
                 .lastName(registerDto.getLastName())

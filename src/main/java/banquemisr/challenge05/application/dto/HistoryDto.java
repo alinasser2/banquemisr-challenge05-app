@@ -14,8 +14,8 @@ public class HistoryDto {
 
     private ActionType actionType;
 
-    private Task task;
+    private TaskDTO task;
 
-    private Date CreatedAt;
+    private Date createdAt;
 
 }

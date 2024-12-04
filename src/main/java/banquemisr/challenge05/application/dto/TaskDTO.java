@@ -1,5 +1,6 @@
 package banquemisr.challenge05.application.dto;
 
+import banquemisr.challenge05.application.enums.TaskPriority;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -23,10 +24,9 @@ public class TaskDTO {
     @NotNull(message = "Status is mandatory")
     private String status;
 
+
     @NotNull(message = "Priority is mandatory")
-    @Min(value = 1, message = "Priority must be at least 1 (High)")
-    @Max(value = 3, message = "Priority must be at most 3 (Low)")
-    private Integer priority;
+    private TaskPriority priority;
 
     @FutureOrPresent(message = "Due date must be in the present or future")
     private LocalDateTime dueDate;
