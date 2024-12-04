@@ -105,11 +105,9 @@ You can download the Postman collection to test the API endpoints from the link 
 
 - [Download Postman Collection](https://drive.google.com/file/d/1il3tS9m3LHOy3FGdMBKwXEhtPYYDygU5/view?usp=sharing)
 
-### Example Image
+### Database Schema
 
-Here is an example image of the application's task management dashboard:
-
-![Task Management Dashboard](https://drive.google.com/file/d/1lZQYEoefrghPca5XD-qXYChdyJDGTFUW/view?usp=sharing)
+- [Task Management Database Schema Image](https://drive.google.com/file/d/1lZQYEoefrghPca5XD-qXYChdyJDGTFUW/view?usp=sharing)
 
 # **Thank You For Your Time**
 
