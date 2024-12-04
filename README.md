@@ -101,8 +101,15 @@ Once the application is running, you can access the API documentation at:
 
 ### Postman Collection
 
-A Postman collection has been attached to the project to assist with testing the API endpoints. You can import the collection into Postman and test the various API calls. The collection is available via email upon request.
+You can download the Postman collection to test the API endpoints from the link below:
 
+- [Download Postman Collection](https://drive.google.com/file/d/1il3tS9m3LHOy3FGdMBKwXEhtPYYDygU5/view?usp=sharing)
+
+### Example Image
+
+Here is an example image of the application's task management dashboard:
+
+![Task Management Dashboard](https://drive.google.com/file/d/1lZQYEoefrghPca5XD-qXYChdyJDGTFUW/view?usp=sharing)
 
 # **Thank You For Your Time**
 
