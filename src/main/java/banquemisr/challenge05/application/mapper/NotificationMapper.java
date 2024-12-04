@@ -8,8 +8,8 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 
 
 @Mapper(
-        componentModel = "spring", // Ensures Spring creates the mapper instance
-        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE // Avoids overwriting null values
+        componentModel = "spring",
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
 )
 public interface NotificationMapper {
 

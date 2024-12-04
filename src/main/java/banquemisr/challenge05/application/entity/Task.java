@@ -20,7 +20,7 @@ public class Task {
 
     @Id
     @GeneratedValue
-    private UUID id;  // UUID as the primary key
+    private UUID id;
 
     @Column(nullable = false)
     private String title;

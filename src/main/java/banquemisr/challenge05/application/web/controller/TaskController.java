@@ -132,4 +132,20 @@ public class TaskController {
             @PathVariable UUID id) {
         return ResponseEntity.ok(taskService.markTaskDone(id));
     }
+
+
+    @PatchMapping("/{id}/in-progress")
+    @ApiOperation(
+            value = "Mark a task as in progress",
+            notes = "Provide the task ID to mark it as in progress."
+    )
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Task marked in progress successfully", response = TaskResponseDTO.class),
+            @ApiResponse(code = 404, message = "Task not found with the given ID")
+    })
+    public ResponseEntity<TaskResponseDTO> markTaskInProgress(
+            @ApiParam(value = "UUID of the task to be marked as done", required = true)
+            @PathVariable UUID id) {
+        return ResponseEntity.ok(taskService.markTaskInProgress(id));
+    }
 }

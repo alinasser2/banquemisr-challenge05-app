@@ -1,7 +1,6 @@
 package banquemisr.challenge05.application.service;
 
 import banquemisr.challenge05.application.dto.TaskDTO;
-import banquemisr.challenge05.application.entity.Task;
 import banquemisr.challenge05.application.enums.TaskStatus;
 import banquemisr.challenge05.application.web.response.TaskResponseDTO;
 

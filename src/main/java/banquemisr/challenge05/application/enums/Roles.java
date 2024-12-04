@@ -9,7 +9,6 @@ public enum Roles {
 
     private final String desc;
 
-    // Constructor to set the description
     Roles(String desc) {
         this.desc = desc;
     }

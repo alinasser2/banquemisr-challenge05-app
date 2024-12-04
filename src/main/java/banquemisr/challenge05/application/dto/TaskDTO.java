@@ -21,7 +21,7 @@ public class TaskDTO {
     private String description;
 
     @NotNull(message = "Status is mandatory")
-    private String status;  // Consider using a `Status` enum instead
+    private String status;
 
     @NotNull(message = "Priority is mandatory")
     @Min(value = 1, message = "Priority must be at least 1 (High)")

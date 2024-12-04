@@ -7,18 +7,18 @@ import org.mapstruct.Mapping;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(
-        componentModel = "spring", // Ensures Spring creates the mapper instance
-        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE // Avoids overwriting null values
+        componentModel = "spring",
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
 )
 public interface HistoryMapper {
 
     @Mapping(source = "actionType", target = "actionType")
     @Mapping(source = "task", target = "task")
-    @Mapping(source = "CreatedAt", target = "CreatedAt")
+    @Mapping(source = "createdAt", target = "CreatedAt")
     HistoryDto toDto(History history);
 
     @Mapping(source = "actionType", target = "actionType")
     @Mapping(source = "task", target = "task")
-    @Mapping(source = "CreatedAt", target = "CreatedAt")
+    @Mapping(source = "createdAt", target = "CreatedAt")
     History toEntity(HistoryDto historyDto);
 }

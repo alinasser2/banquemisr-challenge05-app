@@ -25,12 +25,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 
-//String email = SecurityContextHolder.getContext().getAuthentication().getName();
 
 
 @Service
